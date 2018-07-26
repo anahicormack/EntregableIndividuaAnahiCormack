@@ -1,5 +1,6 @@
 <?php
 require_once('Usuarios.php');
+
 $usuarios = Usuarios::ObtenerTodos();
 var_dump($usuarios);
 
@@ -16,7 +17,7 @@ var_dump($usuarios);
       <?php
       foreach ($usuarios as $value):
       ?>
-      <li><?= $value['name'] ?>, <?= $value['email'] ?></li>
+      <li><?= $value->getId()?>,<?= $value->getName()?> <?= $value->getEmail()?></li>
       <?php endforeach; ?>
     </ul>
   </body>

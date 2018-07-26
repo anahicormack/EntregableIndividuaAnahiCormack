@@ -1,13 +1,14 @@
 <?php
   class Usuario {
-    private $Id;
+    private $id;
 
     private $name;
     private $email;
     private $password;
 
-    function __construct($name,$email,$password,$role=1,$id=null,$creationDate)
+    public function __construct($id,$name,$email,$password)
     {
+      $this->id = trim($id);
       $this->name = trim($name);
       $this->email = trim($email);
       $this->password = trim($password);
@@ -34,7 +35,7 @@
       require_once 'connect.php';
 
       try {
-    		$sql = "INSERT INTO users (name, email, password) VALUES('{$datosUsuario['name'}', '{.$datosUsuario['email']}', '{$datosUsuario['password']}')";
+    		$sql = "INSERT INTO users (name, email, password) VALUES('{$datosUsuario['name']}', '{$datosUsuario['email']}', '{$datosUsuario['password']}')";
         $query = $db->prepare($sql);
     		$query->execute();
     	}
@@ -83,28 +84,25 @@
     public static function estaLogueado(){
       return isset($_SESSION["id"]);
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
   }
-
-
-
-public function getId()
-{
-    return $this->id;
-}
-
-public function getName()
-{
-    return $this->name;
-}
-public function getEmail()
-{
-    return $this->email;
-}
-
-public function getPassword()
-{
-    return $this->password;
-}
-
 
 ?>
