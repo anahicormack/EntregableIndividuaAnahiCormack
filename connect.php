@@ -1,5 +1,5 @@
 <?php
-	$ruta = 'mysql:host=localhost; dbname=movies_db';
+	$ruta = 'mysql:host=localhost; dbname=movies_db; port=3306';
 	$usuario = 'root';
 	$password = 'root';
 	$opciones = [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ];
@@ -9,6 +9,6 @@
 		//echo "Me conecté todo joya";
 	}
 	catch( PDOException $ErrorEnConexion ) {
-		echo "Se ha producido un terrible error: ".$ErrorEnConexion->getMessage();
+		echo "Se ha producido un error: ".$ErrorEnConexion->getMessage();
 	}
 ?>

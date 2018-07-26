@@ -2,23 +2,16 @@
   class Usuario {
     private $Id;
 
-    public $name;
-    public $email;
-    public $password;
+    private $name;
+    private $email;
+    private $password;
 
-    public static function registrar($datosUsuario) {
-      require_once 'connect.php';
-
-      try {
-    		$sql = "INSERT INTO users (name, email, password) VALUES('".$datosUsuario['name']."', '".$datosUsuario['email']."', '".$datosUsuario['password']."')";
-        $query = $db->prepare($sql);
-    		$query->execute();
-    	}
-    	catch( PDOException $Exception ) {
-        var_dump($Exception);
-    	}
+    function __construct($name,$email,$password,$role=1,$id=null,$creationDate)
+    {
+      $this->name = trim($name);
+      $this->email = trim($email);
+      $this->password = trim($password);
     }
-
 
     public static function validar($datosUsuario) {
       $errores = [];
@@ -35,6 +28,19 @@
         $errores[] = "Debe completar este campo";
       }
       return $errores;
+    }
+
+    public static function registrar($datosUsuario) {
+      require_once 'connect.php';
+
+      try {
+    		$sql = "INSERT INTO users (name, email, password) VALUES('{$datosUsuario['name'}', '{.$datosUsuario['email']}', '{$datosUsuario['password']}')";
+        $query = $db->prepare($sql);
+    		$query->execute();
+    	}
+    	catch( PDOException $Exception ) {
+        var_dump($Exception);
+    	}
     }
 
 
@@ -74,10 +80,31 @@
       return $errores;
     }
 
-
     public static function estaLogueado(){
       return isset($_SESSION["id"]);
     }
   }
+
+
+
+public function getId()
+{
+    return $this->id;
+}
+
+public function getName()
+{
+    return $this->name;
+}
+public function getEmail()
+{
+    return $this->email;
+}
+
+public function getPassword()
+{
+    return $this->password;
+}
+
 
 ?>

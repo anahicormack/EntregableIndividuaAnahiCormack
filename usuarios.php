@@ -1,6 +1,7 @@
 <?php
 require_once('Usuarios.php');
 $usuarios = Usuarios::ObtenerTodos();
+var_dump($usuarios);
 
 ?>
 <!DOCTYPE html>
