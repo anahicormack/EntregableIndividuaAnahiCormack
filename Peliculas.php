@@ -1,12 +1,14 @@
-<?php
 
+<?php
+require_once('Pelicula.php');
 
   class Peliculas {
 
-    public static $TodosLasPeliculas;
+    public static $cantidad;
+    public static $todasLasPeliculas;
 
     public static function ObtenerTodas() {
-      if (!isset(self::$TodasLasPeliculas)) {
+      if (!isset(self::$todasLasPeliculas)) {
 
         require_once 'connect.php';
 
@@ -14,15 +16,22 @@
           $sql = "SELECT * FROM movies";
           $query = $db->prepare($sql);
           $query->execute();
-          $peliculas = $query->fetchAll(PDO::FETCH_ASSOC);
-          return $peliculas;
+          while ($UnaPelicula = $query->fetch(PDO::FETCH_ASSOC)) {
+           $UnaPelicula = new Pelicula ($UnaPelicula['id'], $UnaPelicula['title'], $UnaPelicula['rating'], $UnaPelicula['awards'], $UnaPelicula['release_date'], $UnaPelicula['length']);
+           $PeliculasADevolver[] = $UnaPelicula;
+          }
 
-        }
-
-        catch( PDOException $Exception ) {
+        } catch(PDOException $Exception) {
           var_dump($Exception);
-        }
-      }
+          }
+             self::$cantidad=count($PeliculasADevolver);
+             self::$todasLasPeliculas=$PeliculasADevolver;
+      } else {
+             $PeliculasADevolver= self::$todasLasPeliculas;
+            }
+      return $PeliculasADevolver;
     }
   }
+
+
 ?>

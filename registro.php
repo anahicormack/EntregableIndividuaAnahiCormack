@@ -6,7 +6,8 @@ if ($_POST) {
 
   $errores = Usuario::validar($_POST);
   if(empty($errores)){
-    Usuario::registrar($_POST);
+    $usuario = new Usuario (null, $_POST['name'], $_POST['email'], $_POST['password']);
+    $usuario->registrar();
   } else {
     var_dump($errores);
   }

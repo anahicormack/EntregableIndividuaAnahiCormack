@@ -25,8 +25,8 @@ require_once('Usuario.php');
              $UsuariosADevolver= self::$todosLosUsuarios;
             }
       return $UsuariosADevolver;
-      }
     }
+  }
 
 
 ?>

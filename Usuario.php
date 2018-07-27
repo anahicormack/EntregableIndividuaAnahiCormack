@@ -8,13 +8,13 @@
 
     public function __construct($id,$name,$email,$password)
     {
-      $this->id = trim($id);
+      $this->id = $id;
       $this->name = trim($name);
       $this->email = trim($email);
       $this->password = trim($password);
     }
 
-    public static function validar($datosUsuario) {
+    public function validar($datosUsuario) {
       $errores = [];
 
       if(trim($datosUsuario['name']) == '') {
@@ -31,11 +31,11 @@
       return $errores;
     }
 
-    public static function registrar($datosUsuario) {
+    public function registrar() {
       require_once 'connect.php';
 
       try {
-    		$sql = "INSERT INTO users (name, email, password) VALUES('{$datosUsuario['name']}', '{$datosUsuario['email']}', '{$datosUsuario['password']}')";
+    		$sql = "INSERT INTO users (name, email, password) VALUES ('{$this->name}', '{$this->email}', '{$this->password}')";
         $query = $db->prepare($sql);
     		$query->execute();
     	}
@@ -45,11 +45,11 @@
     }
 
 
-    public static function login($email, $pass) {
+    public function login($email, $pass) {
       require_once 'connect.php';
 
       try {
-        $sql = "SELECT * FROM users WHERE email = '". $email. "' and password ='" .$pass. "'";
+        $sql = "SELECT * FROM users WHERE email = '{$email}' and password = '{$pass}'";
         $query = $db->prepare($sql);
         $query->execute();
         $usuarios = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -67,7 +67,7 @@
       }
     }
 
-    public static function validarLogin($datosUsuario) {
+    public function validarLogin($datosUsuario) {
       $errores = [];
 
       if(trim($datosUsuario['email']) == '') {
@@ -84,23 +84,17 @@
     public static function estaLogueado(){
       return isset($_SESSION["id"]);
     }
-
-    public function getId()
-    {
+    public function getId(){
         return $this->id;
     }
-
-    public function getName()
-    {
+    public function getName(){
         return $this->name;
     }
-    public function getEmail()
-    {
+    public function getEmail(){
         return $this->email;
     }
 
-    public function getPassword()
-    {
+    public function getPassword(){
         return $this->password;
     }
   }

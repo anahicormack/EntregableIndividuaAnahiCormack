@@ -17,8 +17,9 @@ $peliculas = Peliculas::ObtenerTodas();
       <?php
       foreach ($peliculas as $value):
       ?>
-      <li><?= $value['title'] ?>, <?= $value['rating'] ?>, <?= $value['awards'] ?>, <?= $value['release_date'] ?>, <?= $value['length'] ?></li>
+      <li><?=$value->getId()?>,<?= $value->getTitle()?>,<?= $value->getRating()?>,<?= $value->getAwards()?>,<?= $value->getReleaseDate()?>,<?= $value->getLength()?></li>
       <?php endforeach; ?>
     </ul>
   </body>
 </html>
+ s
