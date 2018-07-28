@@ -4,9 +4,12 @@ session_start();
 require_once('Usuario.php');
 
 if ($_POST) {
-  $errores = Usuario::validarLogin($_POST);
+  $usuario = new Usuario (null, null, $_POST['email'], $_POST['password']);
+
+  $errores = $usuario->validarLogin();
+
   if(empty($errores)) {
-    Usuario::login($_POST['email'], $_POST['password']);
+    $usuario->login($_POST['email'], $_POST['password']);
   } else {
     var_dump($errores);
   }
@@ -37,7 +40,7 @@ if(Usuario::estaLogueado()){
       <div class="col">
         <form method="post">
           <div class="main-container">
-            <div class="logo-container"><a href="index.php"><img src="images/logo.jpeg" alt="mascotas" class="small-logo"></img></a></div>
+            <!--<div class="logo-container"><a href="index.php"><img src="images/logo.jpeg" alt="mascotas" class="small-logo"></img></a></div> -->
 
             <div class="header-form">
               <h2>Bienvenido a</h2><h1></h1>

@@ -1,25 +1,26 @@
 <?php
+require_once('Genero.php');
+
   class Generos {
 
-    public static $TodosLosGeneros;
-
-
     public static function ListadoGeneros() {
-      if (!isset(self::$TodosLosGeneros)) {
-
       require_once 'connect.php';
 
+      global $db;
+
       try {
-        $sql = "SELECT name FROM genres";
+        $sql = "SELECT id, name FROM genres";
         $query = $db->prepare($sql);
         $query->execute();
-        $generos = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $generos;
+        while ($UnGenero = $query->fetch(PDO::FETCH_ASSOC)) {
+         $UnGenero = new Genero ($UnGenero['id'], $UnGenero['name']);
+         $GenerosADevolver[] = $UnGenero;
+        }
+        return $GenerosADevolver;
       }
       catch( PDOException $Exception ) {
         var_dump($Exception);
       }
     }
   }
-}
 ?>

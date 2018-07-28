@@ -2,10 +2,9 @@
 require_once('Usuario.php');
 
   class Usuarios {
-    public static $cantidad;
-    public static $todosLosUsuarios;
+
     public static function ObtenerTodos() {
-      if (!isset(self::$todosLosUsuarios)){
+
         require_once 'connect.php';
 
         try {
@@ -19,11 +18,7 @@ require_once('Usuario.php');
         } catch(PDOException $Exception) {
           var_dump($Exception);
         }
-             self::$cantidad=count($UsuariosADevolver);
-             self::$todosLosUsuarios=$UsuariosADevolver;
-       } else {
-             $UsuariosADevolver= self::$todosLosUsuarios;
-            }
+             
       return $UsuariosADevolver;
     }
   }

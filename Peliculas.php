@@ -17,7 +17,7 @@ require_once('Pelicula.php');
           $query = $db->prepare($sql);
           $query->execute();
           while ($UnaPelicula = $query->fetch(PDO::FETCH_ASSOC)) {
-           $UnaPelicula = new Pelicula ($UnaPelicula['id'], $UnaPelicula['title'], $UnaPelicula['rating'], $UnaPelicula['awards'], $UnaPelicula['release_date'], $UnaPelicula['length']);
+           $UnaPelicula = new Pelicula ($UnaPelicula['id'], $UnaPelicula['title'], $UnaPelicula['rating'], $UnaPelicula['awards'], $UnaPelicula['release_date'], $UnaPelicula['length'], $UnaPelicula['genre_id']);
            $PeliculasADevolver[] = $UnaPelicula;
           }
 

@@ -17,7 +17,7 @@ var_dump($usuarios);
       <?php
       foreach ($usuarios as $value):
       ?>
-      <li><?= $value->getId()?>,<?= $value->getName()?> <?= $value->getEmail()?></li>
+      <li><?= $value->getId()?>,<?= $value->getName()?>,<?= $value->getEmail()?></li>
       <?php endforeach; ?>
     </ul>
   </body>

@@ -6,20 +6,16 @@ require_once('Generos.php');
 
 if ($_POST) {
 
-  Pelicula::crear($_POST);
+  $pelicula = new Pelicula (null, $_POST['title'], $_POST['rating'], $_POST['awards'], $_POST['release_date'], $_POST['length'], $_POST['genre_id']);
+  $pelicula->crear();
 
 }
-if(Usuario::estaLogueado()){
-  header('location: home.php');
+if(!Usuario::estaLogueado()){
+  header('location: login.php');
   exit;
 }
 
 $elegir = Generos::ListadoGeneros();
-//foreach ($elegir as $name=> $value) {
-  //echo $value;
-//}
-
-var_dump($elegir);
 
 ?>
 <!DOCTYPE html>
@@ -64,10 +60,10 @@ var_dump($elegir);
 
     <div class='form-group'>
       <label for='pais'></label>
-        <select class="form-control select-pais" name="genero">
+        <select class="form-control select-pais" name="genre_id">
         <option class="select-genero">Genero</option>
         <?php foreach($elegir as $genero):?>
-          <option><?=$genero['name']?></option>
+          <option value="<?=$genero->getId()?>"><?=$genero->getName()?></option>
         <?php endforeach; ?>
       </select>
     </div>

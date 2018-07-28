@@ -1,4 +1,5 @@
 <?php
+	global $db;
 	$ruta = 'mysql:host=localhost; dbname=movies_db; port=3306';
 	$usuario = 'root';
 	$password = 'root';

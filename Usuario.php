@@ -14,19 +14,19 @@
       $this->password = trim($password);
     }
 
-    public function validar($datosUsuario) {
+    public function validar() {
       $errores = [];
 
-      if(trim($datosUsuario['name']) == '') {
-        $errores[] = "Debe completar este campo";
+      if($this->name == '') {
+        $errores[] = "Debe completar su nombre";
       }
-      if(trim($datosUsuario['email']) == '') {
-        $errores[] = "Debe completar este campo";
-      } elseif (!filter_var($datosUsuario['email'], FILTER_VALIDATE_EMAIL)) {
+      if($this->email == '') {
+        $errores[] = "Debe completar su email";
+      } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
         $errores[] = 'Debes ingresar un formato válido de email';
       }
-      if(trim($datosUsuario['password']) == '') {
-        $errores[] = "Debe completar este campo";
+      if($this->password == '') {
+        $errores[] = "Debe completar su password";
       }
       return $errores;
     }
@@ -67,16 +67,16 @@
       }
     }
 
-    public function validarLogin($datosUsuario) {
+    public function validarLogin() {
       $errores = [];
 
-      if(trim($datosUsuario['email']) == '') {
-        $errores[] = "Debe completar este campo";
-      } elseif (!filter_var($datosUsuario['email'], FILTER_VALIDATE_EMAIL)) {
+      if($this->email == '') {
+        $errores[] = "Debe completar su email";
+      } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
         $errores[] = 'Debes ingresar un formato válido de email';
       }
-      if(trim($datosUsuario['password']) == '') {
-        $errores[] = "Debe completar este campo";
+      if($this->password == '') {
+        $errores[] = "Debe completar su password";
       }
       return $errores;
     }

@@ -3,11 +3,12 @@ session_start();
 require_once('Usuario.php');
 
 if ($_POST) {
+  $usuario = new Usuario (null, $_POST['name'], $_POST['email'], $_POST['password']);
 
-  $errores = Usuario::validar($_POST);
+  $errores = $usuario->validar();
+
   if(empty($errores)){
-    $usuario = new Usuario (null, $_POST['name'], $_POST['email'], $_POST['password']);
-    $usuario->registrar();
+        $usuario->registrar();
   } else {
     var_dump($errores);
   }
