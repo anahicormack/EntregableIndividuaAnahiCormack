@@ -34,7 +34,7 @@ if(Usuario::estaLogueado()){
 </head>
 <body>
 
-
+<a href="registro.php">Registrate</a>
   <div class="container">
     <div class="row">
       <div class="col">
@@ -57,13 +57,8 @@ if(Usuario::estaLogueado()){
             </div>
 
             <div><button type="submit" class="btn-primary">INGRESA</button></div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1" value="yes" name="remember">
-              <label class="form-check-label" for="exampleCheck1">Recordar usuario</label>
-            </div>
           </div>
         </form>
-        <div><span><a class="forgot-password" href="#">¿Olvidaste tu contraseña?</a></span></div>
       </div>
     </div>
   </div>

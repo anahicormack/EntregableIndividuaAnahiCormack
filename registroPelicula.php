@@ -4,16 +4,18 @@ require_once('Pelicula.php');
 require_once('Usuario.php');
 require_once('Generos.php');
 
+if(!Usuario::estaLogueado()){
+  header('location: login.php');
+  exit;
+}
+
 if ($_POST) {
 
   $pelicula = new Pelicula (null, $_POST['title'], $_POST['rating'], $_POST['awards'], $_POST['release_date'], $_POST['length'], $_POST['genre_id']);
   $pelicula->crear();
 
 }
-if(!Usuario::estaLogueado()){
-  header('location: login.php');
-  exit;
-}
+
 
 $elegir = Generos::ListadoGeneros();
 
@@ -31,6 +33,9 @@ $elegir = Generos::ListadoGeneros();
 
 </head>
 <body>
+  <?php
+ include("menu.php");
+  ?>
   <div class="register"><h2>Ingresa tu película</h2></div>
   <form method="post" enctype="multipart/form-data">
     <div class="form-group">

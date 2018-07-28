@@ -1,6 +1,10 @@
 <?php
 session_start();
 require_once('Usuario.php');
+if(Usuario::estaLogueado()){
+  header('location: home.php');
+  exit;
+}
 
 if ($_POST) {
   $usuario = new Usuario (null, $_POST['name'], $_POST['email'], $_POST['password']);
@@ -13,10 +17,7 @@ if ($_POST) {
     var_dump($errores);
   }
 }
-if(Usuario::estaLogueado()){
-  header('location: home.php');
-  exit;
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -50,9 +51,6 @@ if(Usuario::estaLogueado()){
 
 
     <div><button type="createAccount" class="btn-primary">CREA TU CUENTA</button></div>
-    <div class="footer-form">
-      <p> Al registrarme, declaro que soy mayor de edad y acepto los<a href="construction.php"> Términos y condiciones y las Políticas de privacidad </a>de <span class="name-in-footer">Patitas a casa</span></p>
-    </div>
   </form>
   <script type="text/javascript" src="bootstrap.min.js">
   </script>

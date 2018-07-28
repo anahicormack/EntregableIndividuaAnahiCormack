@@ -1,8 +1,14 @@
 <?php
+session_start();
 require_once('Usuarios.php');
 
+require_once('Usuario.php');
+
+if(!Usuario::estaLogueado()){
+  header('location: login.php');
+  exit;
+}
 $usuarios = Usuarios::ObtenerTodos();
-var_dump($usuarios);
 
 ?>
 <!DOCTYPE html>
@@ -12,7 +18,9 @@ var_dump($usuarios);
     <title></title>
   </head>
   <body>
-
+    <?php
+    include("menu.php");
+    ?>
     <ul>
       <?php
       foreach ($usuarios as $value):
