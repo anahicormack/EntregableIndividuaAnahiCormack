@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once('Usuarios.php');
-
 require_once('Usuario.php');
 
 if(!Usuario::estaLogueado()){
